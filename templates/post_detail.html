@@ -1,14 +1,13 @@
 <!-- templates/post_detail.html -->
 {% extends 'base.html' %}
 {% block content %}
-
 <div class="post-entry">
-    <h2>{{ anything_you_want.title }}</h2>
-    <p>{{ anything_you_want.body }}</p>
+<h2>{{ object.title }}</h2>
+<p>{{ object.body }}</p>
 </div>
-
+<p><a href="{% url 'post_edit' post.pk %}">+ Edit Blog Post</a></p>
+<p><a href="{% url 'post_delete' post.pk %}">+ Delete Blog Post</a></p>
 {% endblock content %}
-
 <!-- В верхней части мы указываем, что этот шаблон наследуется от base.html. Затем отобразите 
 title и body из нашего объекта контекста, который DetailView делает доступным как post.
 Лично я нашел именование объектов контекста в общих представлениях чрезвычайно 

@@ -1,6 +1,7 @@
 # blog/views.py
 from django.views.generic import ListView, DetailView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 from .models import Post
 
 
@@ -28,3 +29,15 @@ class BlogCreateView(CreateView):
 DetailView ожидает либо первичный ключ, либо slug, переданный ему в качестве 
 идентификатора. Подробнее об этом вкратце.
 """
+
+
+class BlogUpdateView(UpdateView):
+    model = Post
+    fields = ['title', 'body']
+    template_name = 'post_edit.html'
+
+
+class BlogDeleteView(DeleteView):
+    model = Post
+    template_name = 'post_delete.html'
+    success_url = reverse_lazy('home')
